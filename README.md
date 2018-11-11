@@ -2,6 +2,17 @@
 libuuid for golang by cgo
 
 library install for debian  
-$ sudo apt install uuid-dev  
-By default uuid_generate_time_safe is used.  
-Also uuid_generate can be enabled, which is slower, by uncommenting #define USEDEVREND 1  
+$ sudo apt install uuid-dev
+
+ Usage:
+	import "github.com/vycb/uuid"	 
+  oUuid = NewGen()  
+  defer oUuid.Close()  
+  
+  if oUuid.IsNull() {  
+    t.Error("Error to initialize NewGen")  
+  }  
+  log.Printf("NewGen UnparseUpper:%s\n", oUuid.UnparseUpper())  
+
+
+  

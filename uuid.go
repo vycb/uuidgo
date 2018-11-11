@@ -1,3 +1,6 @@
+// Copyright 2018 Way out enterprises. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in Wiki.
 //
 //  libuuid for golang by cgo
 //
@@ -5,6 +8,8 @@
 //      $ sudo apt install uuid-dev
 //  
 //  Usage:
+//  import "github.com/vycb/uuid"
+//
 //  oUuid = NewGen()
 //  defer oUuid.Close()
 
