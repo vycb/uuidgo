@@ -1,23 +1,21 @@
+// libuuid for golang by cgo
+// The libuuid library generates and parses 128-bit Universally Unique IDs
+// (UUIDs). See RFC 4122 for more information.
+//
+// Usage:
+// import "github.com/vycb/uuid"
+// oUuid = NewGen()
+// defer oUuid.Close()
+// if oUuid.IsNull() {
+//   t.Error("Error to initialize NewGen")
+// }
+// log.Printf("NewGen UnparseUpper:%s\n", oUuid.UnparseUpper()) 
+// library install for ubuntu, debian
+// 	$sudo apt install uuid-dev
+// 	
 // Copyright 2018 Way out enterprises. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in Wiki.
-//
-//  libuuid for golang by cgo
-//
-//  library install for ubuntu, debian
-//      $ sudo apt install uuid-dev
-//  
-//  Usage:
-//  import "github.com/vycb/uuid"
-//
-//  oUuid = NewGen()
-//  defer oUuid.Close()
-
-//  if oUuid.IsNull() {
-//    t.Error("Error to initialize NewGen")
-//  }
-//  log.Printf("NewGen UnparseUpper:%s\n", oUuid.UnparseUpper())
-//
 package uuid
 /*
 #cgo CFLAGS: -I/usr/include/uuid -pipe -Wall -O3 -Wint-conversion -fomit-frame-pointer -march=native -fopenmp -D_FILE_OFFSET_BITS=64
