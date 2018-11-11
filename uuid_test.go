@@ -10,8 +10,8 @@ package uuid
 import (
 	"testing"
 	"log"
-	"github.com/jakehl/goid"
-	gouuid "github.com/satori/go.uuid"
+	//"github.com/jakehl/goid"
+	//gouuid "github.com/satori/go.uuid"
 )
 var(
 	uuid1, uuid2, v4UUID string
@@ -265,14 +265,14 @@ func benchmarkGetUUID(b *testing.B, mode int){
 				uuid1 = GetUUIDSha1Lower("1b4e28ba-2fa1-11d2-883f-0016d3cca427", "golang.org")
       case sha1u:
 				uuid1 = GetUUIDSha1Upper("1B4E28BA-2FA1-11D2-883F-0016D3CCA427", "golang.org")
-      case gid:
-				v4gob := goid.NewV4UUID()
-				uuid1 = v4gob.String()
-      case guuid4:
-				gouuid.NewV4()
+      //case gid:
+				//v4gob := goid.NewV4UUID()
+				//uuid1 = v4gob.String()
+      //case guuid4:
+				//gouuid.NewV4()
 				//uuid1 = v4guui.String()
-      case guuid5:
-				gouuid.NewV5(gouuid.NamespaceDNS, "www.example.com")
+      //case guuid5:
+				//gouuid.NewV5(gouuid.NamespaceDNS, "www.example.com")
 			}
 	}
 	//log.Printf("mode %d, %s", mode, uuid1)
@@ -290,6 +290,6 @@ func BenchmarkGetUUIDMd5Upper(b *testing.B){ benchmarkGetUUID(b, md5u)}
 func BenchmarkGetUUIDMd5Lower(b *testing.B){ benchmarkGetUUID(b, md5l)}
 func BenchmarkGetUUIDSha1Upper(b *testing.B){ benchmarkGetUUID(b, sha1u)}
 func BenchmarkGetUUIDSha1Lower(b *testing.B){ benchmarkGetUUID(b, sha1l)}
-func BenchmarkGetGOID     (b *testing.B){ benchmarkGetUUID(b, gid)}
-func BenchmarkGetGOUUID4     (b *testing.B){ benchmarkGetUUID(b, guuid4)}
-func BenchmarkGetGOUUID5     (b *testing.B){ benchmarkGetUUID(b, guuid5)}
+//func BenchmarkGetGOID     (b *testing.B){ benchmarkGetUUID(b, gid)}
+//func BenchmarkGetGOUUID4     (b *testing.B){ benchmarkGetUUID(b, guuid4)}
+//func BenchmarkGetGOUUID5     (b *testing.B){ benchmarkGetUUID(b, guuid5)}
