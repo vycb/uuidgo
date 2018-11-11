@@ -1,4 +1,4 @@
-// libuuid for golang by cgo
+// Packge uuid implements a wrapper around libuuid for golang by cgo
 // The libuuid library generates and parses 128-bit Universally Unique IDs
 // (UUIDs). See RFC 4122 for more information.
 //
