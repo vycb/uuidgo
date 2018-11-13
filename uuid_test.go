@@ -15,7 +15,7 @@ import (
 )
 var(
 	uuid1, uuid2, v4UUID string
-	oUuid *UUID
+	oUuid UUID
 )
 
 func TestNewGenRandom(t *testing.T) {

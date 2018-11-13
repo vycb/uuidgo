@@ -181,7 +181,7 @@ func (u *UUID) Val() string{
 // Generate an MD5 hashed (predictable) UUID based on a well-known UUID
 // providing the namespace and an arbitrary binary string.
 //
-func NewGenMd5(uuid, sname string) *UUID{
+func NewGenMd5(uuid, sname string) UUID{
 	//var bup [16]byte
 	//bup := make([]byte, 16)
 	up := C.CBytes(uuid_byte[:UTY])
@@ -195,14 +195,14 @@ func NewGenMd5(uuid, sname string) *UUID{
 	C.genuuidmd5((*C.u_char)(up), uuid_str, ustrn)
 	ubyt := C.GoBytes(up, C.int(UTY))
 
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // NewGenSha1
 // Generate a SHA1 hashed (predictable) UUID based on a well-known UUID
 // providing the namespace and an arbitrary binary string.
 //
-func NewGenSha1(uuid, sname string) *UUID{
+func NewGenSha1(uuid, sname string) UUID{
 	//var bup [16]byte
 	//bup := make([]byte, 16, 16)
 	//var up unsafe.Pointer
@@ -223,12 +223,12 @@ func NewGenSha1(uuid, sname string) *UUID{
 	ubyt := C.GoBytes(up, C.int(UTY))
 
 	//C.uuid_generate_sha1((*C.u_char)(up), (*C.u_char)(tp), ustrn, (C.ulong)(len(sname)))
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // uuid_generate_time(uuid_t out)
 // gen_uuid.c
-func NewGenTime() *UUID{
+func NewGenTime() UUID{
 	//var bup [16]byte
   up := C.CBytes(uuid_byte[:UTY])
 	defer C.free(unsafe.Pointer(up))
@@ -236,12 +236,12 @@ func NewGenTime() *UUID{
 	C.uuid_generate_time((*C.u_char)(up))
 	ubyt := C.GoBytes(up, C.int(UTY))
 
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // uuid_generate_time_safe(uuid_t out)
 // gen_uuid.c
-func NewGenTimeSafe() *UUID{
+func NewGenTimeSafe() UUID{
 	//var bup [16]byte
   up := C.CBytes(uuid_byte[:UTY])
 	defer C.free(unsafe.Pointer(up))
@@ -249,12 +249,12 @@ func NewGenTimeSafe() *UUID{
 	C.uuid_generate_time_safe((*C.u_char)(up))
 	ubyt := C.GoBytes(up, C.int(UTY))
 
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // uuid_generate(uuid_t out)
 // gen_uuid.c
-func NewGen() *UUID{
+func NewGen() UUID{
 	//var bup [16]byte
   up := C.CBytes(uuid_byte[:UTY])
 	defer C.free(unsafe.Pointer(up))
@@ -263,12 +263,12 @@ func NewGen() *UUID{
 	ubyt := C.GoBytes(up, C.int(UTY))
 	//log.Printf("NewGen:ubyt: len:%v, cap:%v", len(ubyt), cap(ubyt))
 
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // uuid_generate_random(uuid_t out)
 // gen_uuid.c
-func NewGenRandom() *UUID{
+func NewGenRandom() UUID{
 	//var bup [16]byte
   up := C.CBytes(uuid_byte[:UTY])
 	defer C.free(unsafe.Pointer(up))
@@ -278,7 +278,7 @@ func NewGenRandom() *UUID{
 	ubyt := C.GoBytes(up, C.int(UTY))
 	//log.Printf("NewGenRandom:ubyt: len:%v, cap:%v", len(ubyt), cap(ubyt))
 
-	return &UUID{uuidb: ubyt, val: ""}
+	return UUID{uuidb: ubyt, val: ""}
 }
 
 // uuid_compare(uuid_t uuid1, uuid_t uuid2)
