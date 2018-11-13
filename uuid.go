@@ -139,15 +139,33 @@ type UUID struct{
 //
 func (u *UUID) Close() {
 	//C.free(unsafe.Pointer(u.uuid))
-	var s []byte
-	u.uuidb = s
+	//var s []byte
+	//u.uuidb = s
 }
 
 // uuid_is_null(uuid_t uuid)
 // clear.c
 func (u *UUID) Clear() {
-	//C.uuid_clear((*C.u_char)(u.uuid))
-	u.Close()
+	up := C.CBytes(u.uuidb)
+  defer C.free(unsafe.Pointer(up))
+	C.uuid_clear((*C.u_char)(up))
+	ubyt := C.GoBytes(up, C.int(UTY))
+	u.uuidb=ubyt
+	//u.Close()
+}
+
+// uuid_is_null(uuid_t uuid)
+// isnull.c
+func (u *UUID) IsNull() int{
+	up := C.CBytes(u.uuidb)
+  defer C.free(unsafe.Pointer(up))
+	res := int(C.uuid_is_null((*C.u_char)(up)))
+	//log.Printf("IsNull:uuidb: len:%v, cap:%v", len(u.uuidb), cap(u.uuidb))
+
+	//if len(u.uuidb) == 0{
+		//return true
+	//}
+	return res
 }
 
 // get: Val()
@@ -261,18 +279,6 @@ func NewGenRandom() *UUID{
 	//log.Printf("NewGenRandom:ubyt: len:%v, cap:%v", len(ubyt), cap(ubyt))
 
 	return &UUID{uuidb: ubyt, val: ""}
-}
-
-// uuid_is_null(uuid_t uuid)
-// isnull.c
-func (u *UUID) IsNull() bool{
-	//res := int(C.uuid_is_null((*C.u_char)(u.uuid)))
-	//log.Printf("IsNull:uuidb: len:%v, cap:%v", len(u.uuidb), cap(u.uuidb))
-
-	if len(u.uuidb) == 0{
-		return true
-	}
-	return false
 }
 
 // uuid_compare(uuid_t uuid1, uuid_t uuid2)

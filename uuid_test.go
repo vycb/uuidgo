@@ -21,7 +21,7 @@ var(
 func TestNewGenRandom(t *testing.T) {
 	oUuid = NewGenRandom()
 	defer oUuid.Close()
-	if oUuid.IsNull() {
+	if oUuid.IsNull()==1 {
 		t.Error("Error to initialize NewGenRandom")
 	}
 	log.Printf("NewGenRandom UnparseUpper:%s\n", oUuid.UnparseUpper())
@@ -45,13 +45,13 @@ func TestNewGenRandom(t *testing.T) {
 	}else{
     log.Print("Compare() 2 Ok in NewGenRandom")
   }
-	if oUuid.IsNull() {
+	if oUuid.IsNull()==1 {
 		t.Error("Error to check IsNull() 1 in NewGenRandom")
 	}else{
     log.Print("IsNull() 1 Ok in NewGenRandom")
   }
 	oUuid.Clear()
-	if ! oUuid.IsNull() {
+	if oUuid.IsNull()!=1 {
 		t.Error("Error to check IsNull() 2 in NewGenRandom")
 	}else{
     log.Print("Clear() and IsNull() 2 Ok in NewGenRandom")
@@ -62,7 +62,7 @@ func TestNewGenRandom(t *testing.T) {
 func TestNewGen(t *testing.T) {
 	goUuid := NewGen()
 	defer goUuid.Close()
-	if goUuid.IsNull() {
+	if goUuid.IsNull()==1 {
 		t.Error("Error to initialize NewGen")
 	}
 	log.Printf("NewGen UnparseUpper:%s\n", goUuid.UnparseUpper())
@@ -71,7 +71,7 @@ func TestNewGen(t *testing.T) {
 func TestNewGenTime(t *testing.T) {
 	tUuid := NewGenTime()
 	defer tUuid.Close()
-	if tUuid.IsNull() {
+	if tUuid.IsNull()==1 {
 		t.Error("Error to initialize NewGenTime")
 	}
 	log.Printf("NewGenTime UnparseUpper:%s\n", tUuid.UnparseUpper())
@@ -80,7 +80,7 @@ func TestNewGenTime(t *testing.T) {
 func TestNewGenTimeSafe(t *testing.T) {
 	tsUuid := NewGenTimeSafe()
 	defer tsUuid.Close()
-	if tsUuid.IsNull() {
+	if tsUuid.IsNull()==1 {
 		t.Error("Error to initialize NewGenTimeSafe")
 	}
 	log.Printf("NewGenTimeSafe UnparseUpper:%s\n", tsUuid.UnparseUpper())
@@ -114,7 +114,7 @@ func TestNewGenMd5(t *testing.T) {
 	//s1 :="github.org"
 	mUuid := NewGenMd5(u1, s1)
 	defer mUuid.Close()
-	if mUuid.IsNull() {
+	if mUuid.IsNull()==1 {
     t.Error("Error to initialize NewGenMd5")
   }
 	log.Printf("NewGenMd5: %s\n", mUuid.UnparseLower())
@@ -159,7 +159,7 @@ func TestNewGenSha1(t *testing.T) {
 	//oUuid = NewGen()
 	sUuid := NewGenSha1(u1, s1)
 	defer sUuid.Close()
-	if sUuid.IsNull() {
+	if sUuid.IsNull()==1 {
     t.Error("Error to initialize NewGenSha1")
   }
 	log.Printf("NewGenSha1:%s \n", sUuid.UnparseLower())
